@@ -4,6 +4,7 @@ package com.example.app.entity;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -18,6 +19,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +33,7 @@ public class User implements UserDetails  {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private Integer id;
+    private Long id;
 
 
     @Column(nullable = false)
@@ -59,6 +61,9 @@ public class User implements UserDetails  {
     public String getPassword() {
         return password;
     }
+    
+//    @OneToMany(mappedBy = "user")
+//    private Set<Favourites> favourites;
 
     @Override
     public String getUsername() {
@@ -85,11 +90,11 @@ public class User implements UserDetails  {
         return true;
     }
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public User setId(Integer id) {
+	public User setId(Long id) {
 		this.id = id;
 		return this;
 	}
@@ -134,5 +139,13 @@ public class User implements UserDetails  {
 		this.password = password;
 		return this;
 	}
+	
+	  @Override
+	    public String toString() {
+	        return "User{" +
+	                "id=" + id +
+	                ", fullname='" + fullName + '\'' +
+	                '}';
+	    }
 
 }

@@ -1,4 +1,4 @@
-package Response;
+package com.example.app.response;
 
 
 public class LoginResponse {
